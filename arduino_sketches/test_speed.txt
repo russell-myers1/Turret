@@ -1,0 +1,36 @@
+#include <AccelStepper.h>
+
+#define STEP_PIN_PAN 8
+#define DIR_PIN_PAN  9
+#define STEP_PIN_TILT 2
+#define DIR_PIN_TILT  3
+
+AccelStepper stepperPan(AccelStepper::DRIVER, STEP_PIN_PAN, DIR_PIN_PAN);
+AccelStepper stepperTilt(AccelStepper::DRIVER, STEP_PIN_TILT, DIR_PIN_TILT);
+
+void setup() {
+  Serial.begin(115200);
+
+  stepperPan.setMinPulseWidth(10);     // TB6600 safe
+  stepperPan.setMaxSpeed(4000);        // start low
+  stepperPan.setAcceleration(20000);
+
+  stepperTilt.setMinPulseWidth(10);
+  stepperTilt.setMaxSpeed(4000);
+  stepperTilt.setAcceleration(20000);
+
+  // set initial targets
+  stepperPan.moveTo(500);
+  stepperTilt.moveTo(500);
+}
+
+void loop() {
+  if (stepperPan.distanceToGo() == 0) {
+    stepperPan.moveTo(-stepperPan.currentPosition());
+  }
+  if (stepperTilt.distanceToGo() == 0) {
+    stepperTilt.moveTo(-stepperTilt.currentPosition());
+  }
+  stepperPan.run();
+  stepperTilt.run();
+}

@@ -1,0 +1,68 @@
+#include <AccelStepper.h>
+
+// --- Pan pins ---
+#define STEP_PIN_PAN 8
+#define DIR_PIN_PAN  9
+
+// --- Tilt pins ---
+#define STEP_PIN_TILT 2
+#define DIR_PIN_TILT  3
+
+// --- Stepper drivers ---
+AccelStepper stepperPan(AccelStepper::DRIVER, STEP_PIN_PAN, DIR_PIN_PAN);
+AccelStepper stepperTilt(AccelStepper::DRIVER, STEP_PIN_TILT, DIR_PIN_TILT);
+
+// --- Target positions ---
+long targetPositionPan  = 0;
+long targetPositionTilt = 0;
+
+void setup() {
+  Serial.begin(115200);
+  while (!Serial) { ; }
+
+  stepperPan.setMaxSpeed(4400);
+  stepperPan.setAcceleration(20000);
+
+  stepperTilt.setMaxSpeed(4300);
+  stepperTilt.setAcceleration(15000);
+
+  Serial.println("Arduino Pan-Tilt Control Ready");
+}
+
+void loop() {
+  // Handle incoming serial commands
+  if (Serial.available()) {
+    String input = Serial.readStringUntil('\n');
+
+    if (input.startsWith("move:")) {
+      input.remove(0, 5);  // Strip "move:"
+
+      int commaIndex = input.indexOf(',');
+      if (commaIndex != -1) {
+        String panStr = input.substring(0, commaIndex);
+        String tiltStr = input.substring(commaIndex + 1);
+
+        int panVal = panStr.toInt();
+        int tiltVal = tiltStr.toInt();
+
+        movePan(panVal);
+        moveTilt(tiltVal);
+      }
+    }
+  }
+
+  // Continuously run motors toward their targets
+  stepperPan.run();
+  stepperTilt.run();
+}
+
+// --- Movement functions ---
+void movePan(long target) {
+  targetPositionPan = target;
+  stepperPan.moveTo(targetPositionPan);
+}
+
+void moveTilt(long target) {
+  targetPositionTilt = target;
+    stepperTilt.moveTo(targetPositionTilt);
+}
