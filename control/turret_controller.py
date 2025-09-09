@@ -1,7 +1,13 @@
 # control/turret_controller.py
+
 import cv2
 from vision.face_tracker import FaceTracker
 from hardware.motor_controller import MotorController
+
+#from blaster import Blaster
+#from hardware.serial_manager import SerialManager
+from config import ARDUINO_PORT, BAUD_RATE
+
 
 class TurretController:
     def __init__(self, camera):
@@ -53,5 +59,5 @@ class TurretController:
 
 
         # Example: Blaster firing (kept commented)
-        # if abs(cx - w/2) < 50 and abs(cy - h/2) < 50:
-        #     blaster.fire()
+        if abs(cx - w/2) < 50 and abs(cy - h/2) < 50:
+            self.motors.fire()

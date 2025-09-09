@@ -1,3 +1,4 @@
+#hardware/blaster.py
 import serial
 import time
 from config import BLASTER_PORT, BAUD_RATE, SHOT_COOLDOWN
