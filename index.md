@@ -57,17 +57,5 @@ This project demonstrates **end-to-end engineering**: electronics design, embedd
 
 ---
 
-<!-- Load Mermaid -->
-<script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-  mermaid.initialize({ startOnLoad: true });
-</script>
-
-```mermaid
-flowchart LR
-  Radar[mmWave Radar] --> Pi[Pi 5 + Hailo-8L AI]
-  Camera[Pi HQ Camera] --> Pi
-  Pi -->|Serial| Uno[Arduino Uno]
-  Pi -->|Serial| Nano[Arduino Nano]
-  Uno --> Motors[Pan/Tilt Motors]
-  Uno --> Blaster[Gel Blaster MOSFET]
+## System Flow
+![System Flow](system-flow.png)
