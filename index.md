@@ -71,4 +71,3 @@ flowchart LR
   Pi -->|Serial| Nano[Arduino Nano]
   Uno --> Motors[Pan/Tilt Motors]
   Uno --> Blaster[Gel Blaster MOSFET]
-
