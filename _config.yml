@@ -1,6 +1,10 @@
 theme: jekyll-theme-minimal
-
 title: AI-Powered Robotic Turret
 description: Portfolio project showcasing robotics, AI, and embedded systems.
-logo: https://img.youtube.com/vi/XWiej0elrc0/maxresdefault.jpg
-show_downloads: false
+
+# Allow raw HTML inside Markdown
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  parse_block_html: true
