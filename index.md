@@ -5,7 +5,8 @@ title: AI-Powered Robotic Turret
 
 # AI-Powered Robotic Turret
 
-<img src="https://img.youtube.com/vi/XWiej0elrc0/maxresdefault.jpg" alt="Turret Demo Banner" width="100%" style="border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);margin:20px 0;" />
+<img src="banner.jpg" alt="AI-Powered Robotic Turret Banner" width="100%" style="border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.3);margin:20px 0;" />
+
 
 ## Demo Video
 [![AI-Powered Robotic Turret Demo](https://img.youtube.com/vi/XWiej0elrc0/0.jpg)](https://www.youtube.com/watch?v=XWiej0elrc0)
